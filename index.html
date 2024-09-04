@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רשימת קניות</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #00796b;
+            direction: rtl;
+        }
+        .category {
+            margin: 20px 0;
+        }
+        .category-header {
+            cursor: pointer;
+            background-color: #00796b;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .category-content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+            background-color: #ffffff;
+            display: none;
+            flex-wrap: wrap;
+        }
+        .product {
+            flex: 1 1 calc(33.333% - 20px);
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+            background-color: #b2ebf2;
+        }
+        #shopping-list {
+            width: 100%;
+            height: 100px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+        #copy-button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #total-price {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>רשימת קניות מהסופר</h1>
+
+    <div class="category">
+        <div class="category-header">בשרים</div>
+        <div class="category-content">
+            <div class="product" draggable="true" data-price="50">בשר בקר - 50 ש"ח</div>
+            <div class="product" draggable="true" data-price="30">עוף - 30 ש"ח</div>
+            <div class="product" draggable="true" data-price="40">בשר טחון - 40 ש"ח</div>
+            <div class="product" draggable="true" data-price="35">קבב - 35 ש"ח</div>
+            <div class="product" draggable="true" data-price="45">סטייק - 45 ש"ח</div>
+            <div class="product" draggable="true" data-price="55">שניצל - 55 ש"ח</div>
+            <div class="product" draggable="true" data-price="25">נקניקיות - 25 ש"ח</div>
+            <div class="product" draggable="true" data-price="30">בשר עגל צעיר - 30 ש"ח</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">חלבי</div>
+        <div class="category-content">
+            <div class="product" draggable="true" data-price="5">חלב - 5 ש"ח</div>
+            <div class="product" draggable="true" data-price="20">גבינה צהובה - 20 ש"ח</div>
+            <div class="product" draggable="true" data-price="10">יוגורט - 10 ש"ח</div>
+            <div class="product" draggable="true" data-price="15">גבינת קוטג' - 15 ש"ח</div>
+            <div class="product" draggable="true" data-price="25">גבינת שמנת - 25 ש"ח</div>
+            <div class="product" draggable="true" data-price="30">גבינת פטה - 30 ש"ח</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">מאפים</div>
+        <div class="category-content">
+            <div class="product" draggable="true" data-price="8">לחם - 8 ש"ח</div>
+            <div class="product" draggable="true" data-price="12">לחמניות - 12 ש"ח</div>
+            <div class="product" draggable="true" data-price="15">עוגיות - 15 ש"ח</div>
+            <div class="product" draggable="true" data-price="10">פיתה - 10 ש"ח</div>
+            <div class="product" draggable="true" data-price="20">באגט - 20 ש"ח</div>
+            <div class="product" draggable="true" data-price="25">קרואסון - 25 ש"ח</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">ניקיון</div>
+        <div class="category-content">
+            <div class="product" draggable="true" data-price="10">סבון כלים - 10 ש"ח</div>
+            <div class="product" draggable="true" data-price="25">אבקת כביסה - 25 ש"ח</div>
+            <div class="product" draggable="true" data-price="15">מטליות ניקוי - 15 ש"ח</div>
+            <div class="product" draggable="true" data-price="20">מרכך כביסה - 20 ש"ח</div>
+            <div class="product" draggable="true" data-price="30">נוזל רצפות - 30 ש"ח</div>
+            <div class="product" draggable="true" data-price="35">נוזל חלונות - 35 ש"ח</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">ממתקים</div>
+        <div class="category-content">
+            <div class="product" draggable="true" data-price="10">שוקולד - 10 ש"ח</div>
+            <div class="product" draggable="true" data-price="5">סוכריות - 5 ש"ח</div>
+            <div class="product" draggable="true" data-price="20">עוגות - 20 ש"ח</div>
+            <div class="product" draggable="true" data-price="15">חטיף שוקולד - 15 ש"ח</div>
+            <div class="product" draggable="true" data-price="25">חטיף אנרגיה - 25 ש"ח</div>
+            <div class="product" draggable="true" data-price="9">חטיפי ביסלי 100 גרם - 9 ש"ח</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-header">היגיינה</div>
+        <div class="category-content">
+            <div class="product" draggable="true" data-price="15">משחת שיניים - 15 ש"ח</div>
+            <div class="product" draggable="true" data-price="20">שמפו - 20 ש"ח</div>
+            <div class="product" draggable="true" data-price="10">סבון גוף - 10 ש"ח</div>
+            <div class="product" draggable="true" data-price="25">מרכך שיער - 25 ש"ח</div>
+            <div class="product" draggable="true" data-price="30">דאודורנט - 30 ש"ח</div>
+            <div class="product" draggable="true" data-price="35">קרם לחות - 35 ש"ח</div>
+        </div>
+    </div>
+
+    <textarea id="shopping-list" placeholder="גרור את המוצרים לכאן..."></textarea>
+    <button id="copy-button">העתק טקסט</button>
+    <div id="total-price">מחיר משוער: 0 ש"ח</div>
+
+    <script>
+        document.querySelectorAll('.category-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                content.style.display = content.style.display === 'none' ? 'flex' : 'none';
+            });
+        });
+
+        document.querySelectorAll('.product').forEach(product => {
+            product.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', product.textContent);
+                e.dataTransfer.setData('price', product.getAttribute('data-price'));
+            });
+        });
+
+        const shoppingList = document.getElementById('shopping-list');
+        let totalSum = 0;
+
+        shoppingList.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        shoppingList.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const productText = e.dataTransfer.getData('text/plain');
+            const price = e.dataTransfer.getData('price');
+            const quantity = prompt("הכנס כמות / משקל:");
+            if (quantity && !isNaN(quantity) && quantity > 0) {
+                const totalPrice = price * quantity;
+                const productEntry = `${productText} - ${quantity} יחידות - ${totalPrice} ש"ח`;
+                addToShoppingList(productEntry, totalPrice);
+            } else {
+                alert("אנא הכנס כמות / משקל תקין.");
+            }
+        });
+
+        function addToShoppingList(productText, totalPrice) {
+            shoppingList.value += productText + '\n';
+            totalSum += totalPrice;
+            updateTotalPrice();
+        }
+
+        function updateTotalPrice() {
+            document.getElementById('total-price').textContent = `מחיר משוער: ${totalSum} ש"ח`;
+        }
+
+        document.getElementById('copy-button').addEventListener('click', () => {
+            const totalPriceText = `\n\nמחיר משוער: ${totalSum} ש"ח`;
+            shoppingList.value += totalPriceText;
+            shoppingList.select();
+            document.execCommand('copy');
+            shoppingList.value = shoppingList.value.replace(totalPriceText, ''); // הסרת הסכום המשוער לאחר ההעתקה
+        });
+    </script>
+</body>
+</html>
