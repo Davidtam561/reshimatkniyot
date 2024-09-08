@@ -60,6 +60,9 @@
             margin-top: 20px;
             font-size: 1.2em;
         }
+        .highlight {
+            border: 2px dashed #00796b;
+        }
     </style>
 </head>
 <body>
@@ -155,6 +158,54 @@
             product.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData('text/plain', product.textContent);
                 e.dataTransfer.setData('price', product.getAttribute('data-price'));
+            });
+
+            // Add touch event listeners for mobile support
+            product.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                product.classList.add('dragging');
+                product.setAttribute('data-touch-id', touch.identifier);
+            });
+
+            product.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const draggingProduct = document.querySelector('.dragging');
+                if (draggingProduct && draggingProduct.getAttribute('data-touch-id') == touch.identifier) {
+                    const shoppingList = document.getElementById('shopping-list');
+                    const rect = shoppingList.getBoundingClientRect();
+                    if (touch.clientX >= rect.left && touch.clientX <= rect.right && touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                        shoppingList.classList.add('highlight');
+                    } else {
+                        shoppingList.classList.remove('highlight');
+                    }
+                }
+            });
+
+            product.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                const draggingProduct = document.querySelector('.dragging');
+                if (draggingProduct) {
+                    const shoppingList = document.getElementById('shopping-list');
+                    const rect = shoppingList.getBoundingClientRect();
+                    const touch = e.changedTouches[0];
+                    if (touch.clientX >= rect.left && touch.clientX <= rect.right && touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                        const productText = draggingProduct.textContent;
+                        const price = draggingProduct.getAttribute('data-price');
+                        const quantity = prompt("הכנס כמות / משקל:");
+                        if (quantity && !isNaN(quantity) && quantity > 0) {
+                            const totalPrice = price * quantity;
+                            const productEntry = `${productText} - ${quantity} יחידות - ${totalPrice} ש"ח`;
+                            addToShoppingList(productEntry, totalPrice);
+                        } else {
+                            alert("אנא הכנס כמות / משקל תקין.");
+                        }
+                    }
+                    shoppingList.classList.remove('highlight');
+                    draggingProduct.classList.remove('dragging');
+                    draggingProduct.removeAttribute('data-touch-id');
+                }
             });
         });
 
