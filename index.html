@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he">
 <head>
     <meta charset="UTF-8">
@@ -240,17 +240,17 @@
             document.getElementById('total-price').textContent = `מחיר משוער: ${totalSum} ש"ח`;
         }
 
-     document.getElementById('copy-button').addEventListener('click', async () => {
-    const totalPriceText = `\n\nמחיר משוער: ${totalSum} ש"ח`;
-    const textToCopy = shoppingList.value + totalPriceText;
-    
-    try {
-        await navigator.clipboard.writeText(textToCopy);
-        alert("הטקסט הועתק בהצלחה!");
-    } catch (err) {
-        console.error('Failed to copy: ', err);
-        alert("לא הצלחנו להעתיק את הטקסט. אנא נסה שוב.");
-    }
+        document.getElementById('copy-button').addEventListener('click', async () => {
+            const totalPriceText = `\n\nמחיר משוער: ${totalSum} ש"ח`;
+            const textToCopy = shoppingList.value + totalPriceText;
+            
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                alert("הטקסט הועתק בהצלחה!");
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                alert("לא הצלחנו להעתיק את הטקסט. אנא נסה שוב.");
+            }
         });
     </script>
 </body>
