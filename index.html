@@ -240,13 +240,17 @@
             document.getElementById('total-price').textContent = `מחיר משוער: ${totalSum} ש"ח`;
         }
 
-        document.getElementById('copy-button').addEventListener('click', () => {
-            const totalPriceText = `\n\nמחיר משוער: ${totalSum} ש"ח`;
-            shoppingList.value += totalPriceText;
-            shoppingList.select();
-            document.execCommand('copy');
-            shoppingList.value = shoppingList.value.replace(totalPriceText, ''); // הסרת הסכום המשוער לאחר ההעתקה
-            alert("הטקסט הועתק בהצלחה!");
+     document.getElementById('copy-button').addEventListener('click', async () => {
+    const totalPriceText = `\n\nמחיר משוער: ${totalSum} ש"ח`;
+    const textToCopy = shoppingList.value + totalPriceText;
+    
+    try {
+        await navigator.clipboard.writeText(textToCopy);
+        alert("הטקסט הועתק בהצלחה!");
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+        alert("לא הצלחנו להעתיק את הטקסט. אנא נסה שוב.");
+    }
         });
     </script>
 </body>
