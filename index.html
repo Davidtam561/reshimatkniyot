@@ -31,6 +31,16 @@
             display: none;
             flex-wrap: wrap;
         }
+        #clear-button {
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
         .product {
             flex: 1 1 calc(33.333% - 20px);
             margin: 10px;
@@ -146,7 +156,9 @@
     <textarea id="shopping-list" placeholder="גרור את המוצרים לכאן..."></textarea>
     <button id="copy-button">העתק טקסט</button>
     <div id="total-price">מחיר משוער: 0 ש"ח</div>
-
+    
+<button id="copy-button">העתק טקסט</button>
+<button id="clear-button">נקה שדה</button>
     <script>
         document.querySelectorAll('.category-header').forEach(header => {
             header.addEventListener('click', () => {
