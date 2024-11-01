@@ -242,6 +242,28 @@
                 alert("אנא הכנס כמות / משקל תקין.");
             }
         });
+        document.getElementById('clear-button').addEventListener('click', () => {
+    shoppingList.value = '';
+    totalSum = 0;
+    updateTotalPrice();
+});
+        function addToShoppingList(productText, totalPrice) {
+    const productLine = productText + ' [X]\n';
+    shoppingList.value += productLine;
+    totalSum += totalPrice;
+    updateTotalPrice();
+}
+
+shoppingList.addEventListener('click', (e) => {
+    const lines = shoppingList.value.split('\n');
+    const clickedLineIndex = getClickedLineIndex(e.target, shoppingList);
+    if (lines[clickedLineIndex]?.includes('[X]')) {
+        lines.splice(clickedLineIndex, 1);
+        shoppingList.value = lines.join('\n');
+        // עדכון הסכום הכולל בהתאם
+        recalculateTotalSum();
+    }
+});
 
         function addToShoppingList(productText, totalPrice) {
             shoppingList.value += productText + '\n';
